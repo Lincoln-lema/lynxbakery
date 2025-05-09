@@ -1,0 +1,37 @@
+.payment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding: 20px;
+  background-color: black;
+}
+
+.payment-card {
+  max-width: 700px;
+  background-color: #fff8f0;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn {
+  background-color: #28a745;
+  border: none;
+  padding: 10px 20px;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-top: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+.submit-btn:hover {
+  background-color: #218838;
+}
+
+.text-danger{
+  font-size: 30px;
+  font-weight: 700;
+}

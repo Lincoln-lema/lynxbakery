@@ -1,0 +1,18 @@
+.getcakes-container {
+  background-color: #000;
+  min-height: 100vh;
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+
+.card.bg-dark {
+  border: 1px solid #444;
+}
+
+.cake-card:hover {
+  transform: scale(1.02);
+}
+
+.card-title {
+  color: #ff4c4c;
+}

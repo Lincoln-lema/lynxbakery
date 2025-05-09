@@ -134,3 +134,12 @@ input:focus, textarea:focus {
     text-align: center;
   }
 }
+
+.logo-img {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+

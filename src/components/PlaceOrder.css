@@ -1,0 +1,31 @@
+.order-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+  padding: 15px;
+  background-color: black;
+}
+
+.order-card {
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff8f0;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn {
+  background-color: #d2691e;
+  border: none;
+  padding: 10px 20px;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s ease-in-out;
+}
+
+.submit-btn:hover {
+  background-color: #a0522d;
+}

@@ -1,0 +1,132 @@
+.aboutus-container {
+  background-color: #000;
+  color: #f2f2f2;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.aboutus-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.aboutus-header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  color: #ff9f43;
+}
+
+.aboutus-header p {
+  font-size: 1.3rem;
+  color: #ccc;
+}
+
+.aboutus-section {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.aboutus-section.reverse {
+  flex-direction: row-reverse;
+}
+
+.aboutus-section img {
+  width: 350px;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 0 15px rgba(255, 159, 67, 0.5);
+}
+
+.aboutus-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.aboutus-text h2 {
+  font-size: 2rem;
+  color: #ff9f43;
+  margin-bottom: 0.7rem;
+}
+
+.aboutus-text p, .aboutus-text ul {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ddd;
+}
+
+.aboutus-text ul {
+  padding-left: 1.2rem;
+  list-style: none;
+}
+
+.aboutus-text ul li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.aboutus-text ul li::before {
+  content: '🍰';
+  position: absolute;
+  left: 0;
+}
+
+.aboutus-cta {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.aboutus-cta h2 {
+  font-size: 2rem;
+  color: #ff9f43;
+  margin-bottom: 1rem;
+}
+
+.aboutus-cta p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.aboutus-cta button {
+  padding: 0.7rem 1.5rem;
+  background-color: #ff9f43;
+  border: none;
+  color: black;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.aboutus-cta button:hover {
+  background-color: #ff7f0e;
+}
+
+.aboutus-section video {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  margin: 10px 0;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .aboutus-section {
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  .aboutus-section video {
+    max-width: 100%;
+  }
+
+  .aboutus-text {
+    padding: 0 10px;
+  }
+}

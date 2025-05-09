@@ -1,0 +1,141 @@
+/* Add or update these styles */
+.signin-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: #000; /* or brown if that's your theme */
+}
+
+.form-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  background: #fffefe;
+  min-height: 85vh;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin: auto;
+  margin-top: 20px;
+}
+
+form {
+  width: 100%;
+}
+
+.form-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.flex-column label {
+  font-weight: 600;
+  color: #151717;
+}
+
+.inputForm {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #ecedec;
+  border-radius: 10px;
+  height: 50px;
+  padding-left: 10px;
+  transition: 0.2s ease-in-out;
+}
+
+.input {
+  margin-left: 10px;
+  border: none;
+  width: 85%;
+  height: 100%;
+  font-size: 16px;
+  outline: none;
+}
+
+.inputForm:focus-within {
+  border: 1.5px solid #2d79f3;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.span {
+  color: #b45f06;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease-in-out;
+}
+
+.span:hover {
+  text-decoration: underline;
+}
+
+.button-submit {
+  background-color: #b45f06;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 10px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.button-submit:hover {
+  background-color: #252727;
+}
+
+.p {
+  font-size: 14px;
+  color: #151717;
+  text-align: center;
+}
+
+.line {
+  position: relative;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.line::before,
+.line::after {
+  content: "";
+  height: 1px;
+  background: #ccc;
+  flex: 1;
+  margin: 0 10px;
+}
+
+.btn {
+  flex: 1;
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.btn:hover {
+  border-color: #b45f06;
+}
+
+.text-danger {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+}
+
+.text-warning {
+  color: orange;
+  font-size: 14px;
+  text-align: center;
+}
+

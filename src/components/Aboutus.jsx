@@ -1,68 +1,87 @@
-import React from "react";
-import Footer from "./Footer";
+import React, { useEffect } from 'react';
+import './Aboutus.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Aboutus = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1200 });
+  }, []);
+
   return (
-    <div className="bg-gradient-to-b from-yellow-100 to-orange-200 min-h-screen p-10 flex flex-col items-center">
-      {/* Three Columns Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
-        {/* Column 1: Logo & Intro */}
-        <div className="bg-white p-6 rounded-lg shadow-lg text-center border-l-8 border-orange-500">
-          <img
-            src="/path-to-logo/lynx-logo.jpg" // Replace with actual logo path
-            alt="Lynx Bakery Logo"
-            className="w-32 mx-auto mb-4"
-          />
-          <h1 className="text-3xl font-extrabold text-orange-800">Lynx Bakery</h1>
-          <p className="text-gray-700 mt-4 leading-relaxed">
-            At **Lynx Bakery**, we craft **delicious, premium cakes** using the finest ingredients. 
-            Every slice is baked with **love and perfection** to make your special moments sweeter! 🍰✨
+    <div className="aboutus-container">
+      <div className="aboutus-header">
+        <h1 data-aos="fade-down">Welcome to Lynx Bakery 🍰</h1>
+        <p data-aos="fade-up">Where every bite tells a sweet story!</p>
+      </div>
+
+      <div className="aboutus-section" data-aos="fade-right">
+        <video src="https://lincolin.pythonanywhere.com/static/images/cake.mp4" autoPlay muted loop playsInline />
+        <div className="aboutus-text">
+          <h2>Our Story</h2>
+          <p>
+            Lynx Bakery was born out of a dream to spread joy through cakes. We specialize solely in cakes, pouring our passion into each layer,
+            glaze, and garnish. From birthdays to weddings and surprise treats, we make every celebration sweeter.
           </p>
         </div>
+      </div>
 
-        {/* Column 2: Cakes Available */}
-        <div className="bg-white p-6 rounded-lg shadow-lg text-center border-l-8 border-purple-500">
-          <h2 className="text-3xl font-extrabold text-purple-700">Our Cakes</h2>
-          <ul className="mt-4 text-gray-700 space-y-3">
-            <li>🎂 <span className="text-red-500 font-semibold">Red Velvet Cake</span></li>
-            <li>🍫 <span className="text-brown-600 font-semibold">Black Forest Cake</span></li>
-            <li>🍓 <span className="text-pink-600 font-semibold">Strawberry Cake</span></li>
-            <li>🥕 <span className="text-orange-600 font-semibold">Carrot Cake</span></li>
-            <li>🍌 <span className="text-yellow-600 font-semibold">Banana Cake</span></li>
+      <div className="aboutus-section reverse" data-aos="fade-left">
+        <video src="https://lincolin.pythonanywhere.com/static/images/baking.mp4" autoPlay muted loop playsInline />
+        <div className="aboutus-text">
+          <h2>Why Choose Lynx Bakery?</h2>
+          <ul>
+            <li>🎂 Pure cake focus – no distractions</li>
+            <li>🧁 Fresh daily with real ingredients</li>
+            <li>👩‍🍳 Experienced bakers & decorators</li>
+            <li>🌍 Ethical sourcing & eco-conscious packaging</li>
+            <li>🚚 Fast delivery & custom order options</li>
           </ul>
-          <p className="mt-4 text-lg font-semibold text-purple-600 animate-pulse">
-            🎉 And many more cakes **available on order!** Place yours today! 🍰✨
+        </div>
+      </div>
+
+      <div className="aboutus-section" data-aos="fade-up">
+        <video src="https://lincolin.pythonanywhere.com/static/images/bakers.mp4" autoPlay muted loop playsInline />
+        <div className="aboutus-text">
+          <h2>Meet the Team</h2>
+          <p>
+            Our team is a vibrant mix of passionate bakers, designers, and customer service pros. At Lynx Bakery, every cake is baked with
+            precision, love, and creativity. We take pride in turning your ideas into edible art.
           </p>
         </div>
+      </div>
 
-        {/* Column 3: Team Members */}
-        <div className="bg-white p-6 rounded-lg shadow-lg text-center border-l-8 border-green-500">
-          <h2 className="text-3xl font-extrabold text-green-700">Meet Our Team</h2>
-          <p className="text-gray-700 mt-4">The creative hands behind your favorite cakes! 🍪🎂</p>
-          <div className="mt-6 space-y-4">
-            <div className="p-3 bg-green-100 rounded-lg shadow">
-              <h3 className="text-lg font-bold text-green-700">🍪 Chef Sugarwhisk</h3>
-              <p className="text-gray-500">Master of fluffy cakes!</p>
-            </div>
-            <div className="p-3 bg-pink-100 rounded-lg shadow">
-              <h3 className="text-lg font-bold text-pink-700">🎂 Frosting Queen Bella</h3>
-              <p className="text-gray-500">The genius behind our creamy frosting.</p>
-            </div>
-            <div className="p-3 bg-yellow-100 rounded-lg shadow">
-              <h3 className="text-lg font-bold text-yellow-700">🍫 ChocoLover Mia</h3>
-              <p className="text-gray-500">Our chocolate expert!</p>
-            </div>
-          </div>
+      <div className="aboutus-section reverse" data-aos="zoom-in-up">
+        <video src="https://lincolin.pythonanywhere.com/static/images/vision.mp4" autoPlay muted loop playsInline />
+        <div className="aboutus-text">
+          <h2>Our Vision</h2>
+          <p>
+            We envision a world where every celebration – big or small – has the perfect cake to match. Our goal is to be the #1 cake-only
+            bakery known for creativity, reliability, and unforgettable flavor.
+          </p>
         </div>
       </div>
 
-      {/* Call to Action */}
-      <div className="mt-10 text-center">
-        <p className="text-xl font-semibold text-orange-700">
-          🎉 **Let’s Bake Magic Together!** Visit Lynx Bakery today! 🍰
-        </p>
+      <div className="aboutus-section" data-aos="fade-up">
+        <div className="aboutus-text">
+          <h2>Customer Testimonials ❤️</h2>
+          <p>
+            “Best cake I’ve had in years! The design was exactly what I wanted.” – Sarah M.
+          </p>
+          <p>
+            “The chocolate truffle cake literally melted in my mouth. 10/10.” – Brian K.
+          </p>
+          <p>
+            “Ordered online and got my cake within hours. Great service!” – Amina W.
+          </p>
+        </div>
       </div>
-      <Footer/>
+
+      <div className="aboutus-cta" data-aos="fade-up">
+        <h2>Let’s Bake Memories Together</h2>
+        <p>Browse our selection or place a custom cake order now. Your dream dessert is just one click away.</p>
+        <button onClick={() => window.location.href='/PlaceOrder'}>Order Now</button>
+      </div>
     </div>
   );
 };

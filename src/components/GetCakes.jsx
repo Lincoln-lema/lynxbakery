@@ -1,93 +1,185 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
+import ReactPaginate from 'react-paginate';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { Modal, Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import AOS from 'aos';
+import LazyLoad from 'react-lazyload';
 import { useNavigate } from 'react-router-dom';
-import Footer from './Footer';
-import { Carousel } from 'bootstrap';
+import './GetCakes.css';
 import ImageCarousel from './Carousel';
-import Navbar from './Navbar';
+import 'aos/dist/aos.css';
 
 const GetCakes = () => {
-  // State hooks
   const [cakes, setCakes] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
   const [filteredCakes, setFilteredCakes] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [sort, setSort] = useState('');
+  const [modalCake, setModalCake] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const cakesPerPage = 6;
 
-  // Navigation hook
   const navigate = useNavigate();
-
-  // Image URL base path
   const img_url = "https://lincolin.pythonanywhere.com/static/images/";
 
-  // Fetch cakes function
-  const getCakes = async () => {
-    setLoading(true);
-    setError("");
-    try {
-      const response = await axios.get("https://lincolin.pythonanywhere.com/api/getcakes");
-      setCakes(response.data);
-      setFilteredCakes(response.data);
-    } catch (error) {
-      setError("There was an error fetching cakes.");
-    } finally {
-      setLoading(false);
-    }
+  useEffect(() => {
+    AOS.init();
+    axios.get('https://lincolin.pythonanywhere.com/api/getcakes')
+      .then((res) => {
+        setCakes(res.data);
+        setFilteredCakes(res.data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  const handleSearch = () => {
+    const filtered = cakes.filter(cake =>
+      cake.name.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredCakes(filtered);
+    setCurrentPage(0);
   };
 
   useEffect(() => {
-    getCakes();
-  }, []);
+    let sorted = [...filteredCakes];
+    if (sort === 'asc') sorted.sort((a, b) => a.price - b.price);
+    else if (sort === 'desc') sorted.sort((a, b) => b.price - a.price);
+    setFilteredCakes(sorted);
+  }, [sort]);
 
-  // Handle search functionality
-  const handleSearch = () => {
-    const results = cakes.filter(cake => 
-      cake.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredCakes(results);
+  const handleFavorite = (id) => {
+    setFavorites(prev => prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]);
   };
 
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const pageCakes = useMemo(() => {
+    const start = currentPage * cakesPerPage;
+    return filteredCakes.slice(start, start + cakesPerPage);
+  }, [currentPage, filteredCakes]);
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Click to view details
+    </Tooltip>
+  );
+
   return (
-    <div className="row">
-      <ImageCarousel />
-      
-      {/* Search Bar */}
-      <div className="col-md-12 text-center mt-3 d-flex justify-content-center">
-        <div className="input-group w-50">
-        <input
-          type="text"
-          className="form-control w-50 mx-auto"
-          placeholder="Search for a cake..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button className="btn btn-primary mt-0" onClick={handleSearch}>
-          Search
-        </button>
+    <div className="getcakes-container">
+      <div className="container-fluid px-0 mb-4">
+        <div className="mx-auto" style={{ width: '85%', maxHeight: '400px' }}>
+          <ImageCarousel />
         </div>
       </div>
 
-      <h3 className="text-info mt-3">Available Cakes</h3>
-      {loading && <p>Loading cakes...</p>}
-      {error && <p className="text-danger">{error}</p>}
-      {filteredCakes.length === 0 && !loading && <p>No cakes available</p>}
 
-      {filteredCakes.map((cake) => (
-        <div className="col-md-3 justify-content-center mb-4" key={cake.id}>
-          <div className="card shadow">
-            <img src={img_url + cake.image} className="product_img mt-4" alt={cake.name} />
-            <div className="card-body">
-              <h5 className='mt-2 text-danger'>{cake.name}</h5>
-              <p className='text-muted'>{cake.description.slice(0, 50)}...</p>
-              <b className='text-warning'>Kes {cake.price}</b> <br />
-              <button className='btn btn-primary' onClick={() => navigate("/mpesapayment", { state: { cake } })}> Order Now </button>
-
-            </div>
+      <div className="container py-4">
+        <div className="d-flex justify-content-between mb-3">
+          <div className="input-group w-50 me-2 d-flex justify-content-center align-items-center">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search Cakes..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <button className="btn btn-outline-primary" onClick={handleSearch}>Search</button>
           </div>
+          <select className="form-select w-25 h-7" onChange={(e) => setSort(e.target.value)}>
+            <option value="">Sort by Price</option>
+            <option value="asc">Low to High</option>
+            <option value="desc">High to Low</option>
+          </select>
         </div>
-      ))}
 
-      <Footer/>
+        {loading ? (
+          <Skeleton count={6} height={200} />
+        ) : filteredCakes.length === 0 ? (
+          <div className="text-center py-5">
+            <p className="text-muted fs-4">🧁 No cakes match your search.</p>
+          </div>
+        ) : (
+          <div className="row">
+            {pageCakes.map(cake => (
+              <div
+                key={cake.id}
+                className="col-md-4 mb-4"
+                data-aos="fade-up"
+              >
+                <div className="card h-100 shadow-sm">
+                  <LazyLoad height={200} once>
+                    <img
+                      src={img_url + cake.image}
+                      className="card-img-top img-fluid"
+                      alt={cake.name}
+                      style={{ height: '200px', objectFit: 'cover' }}
+                    />
+                  </LazyLoad>
+                  <div className="card-body">
+                    <h5 className="card-title text-danger">{cake.name}</h5>
+                    <p className="card-text text-muted">{cake.description.slice(0, 50)}...</p>
+                    <p className="text-warning"><strong>Ksh {cake.price}</strong></p>
+                    <div className="d-flex justify-content-between align-items-center">
+                      <OverlayTrigger placement="top" overlay={renderTooltip}>
+                        <Button variant="primary" size="sm" onClick={() => setModalCake(cake)}>Details</Button>
+                      </OverlayTrigger>
+                      <Button variant="success" size="sm" onClick={() => navigate("/mpesapayment", { state: { cake } })}>Order</Button>
+                      <Button variant="link" onClick={() => handleFavorite(cake.id)}>
+                        {favorites.includes(cake.id) ? <FaHeart color="red" /> : <FaRegHeart />}
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {filteredCakes.length > cakesPerPage && (
+          <div className="d-flex justify-content-center mt-4">
+            <ReactPaginate
+              previousLabel={'Prev'}
+              nextLabel={'Next'}
+              breakLabel={'...'}
+              pageCount={Math.ceil(filteredCakes.length / cakesPerPage)}
+              onPageChange={handlePageClick}
+              containerClassName={'pagination'}
+              pageClassName={'page-item'}
+              pageLinkClassName={'page-link'}
+              previousClassName={'page-item'}
+              previousLinkClassName={'page-link'}
+              nextClassName={'page-item'}
+              nextLinkClassName={'page-link'}
+              activeClassName={'active'}
+            />
+          </div>
+        )}
+      </div>
+
+      <Modal show={!!modalCake} onHide={() => setModalCake(null)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalCake?.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <img src={img_url + modalCake?.image} alt={modalCake?.name} className="img-fluid mb-3" />
+          <p><strong>Price:</strong> Ksh {modalCake?.price}</p>
+          <p><strong>Description:</strong> {modalCake?.description || 'No description available.'}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setModalCake(null)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+
+      
     </div>
   );
 };

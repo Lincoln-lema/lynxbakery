@@ -1,0 +1,65 @@
+.addcake-container {
+  background-color: #000000;
+  min-height: 100vh;
+  padding: 50px 0;
+}
+
+.addcake-card-wrapper {
+  background-color: #000; /* Consistent with your app's theme */
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.card {
+  background-color: #fff2f2;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #d35400;
+}
+
+.form-control {
+  background-color: #fefefe;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+.form-control:focus {
+  border-color: #f5b041;
+  box-shadow: 0 0 0 0.2rem rgba(245, 176, 65, 0.25);
+  outline: none;
+}
+
+label {
+  font-weight: 500;
+  color: #333;
+}
+
+.btn-danger {
+  background-color: #e17055;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #d35400;
+}
+
+.text-success,
+.text-danger,
+.text-warning {
+  font-weight: 500;
+  margin-bottom: 10px;
+  text-align: center;
+}

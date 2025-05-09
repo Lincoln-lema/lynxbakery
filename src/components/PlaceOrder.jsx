@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import './PlaceOrder.css';
 
 const PlaceOrder = () => {
   const [username, setUsername] = useState("");
@@ -28,9 +29,7 @@ const PlaceOrder = () => {
       setLoading("");
       setMessage("Order placed successfully!");
 
-      setTimeout(() => {
-        setMessage("");
-      }, 8000);
+      setTimeout(() => setMessage(""), 8000);
 
       setUsername("");
       setCakeName("");
@@ -39,17 +38,15 @@ const PlaceOrder = () => {
     } catch (error) {
       setLoading("");
       setError("Failed to place order. Please try again.");
-      setTimeout(() => {
-        setError("");
-      }, 5000);
+      setTimeout(() => setError(""), 5000);
     }
   };
 
   return (
-    <div className="row justify-content-center mt-4">
-      <div className="col-md-6 card shadow p-4">
+    <div className="order-container">
+      <div className="order-card">
         <form onSubmit={submit}>
-          <h2>Place Order</h2>
+          <h2 className="text-center mb-3">Place Order</h2>
 
           {loading && <p className="text-warning">{loading}</p>}
           {message && <p className="text-success">{message}</p>}
@@ -63,8 +60,6 @@ const PlaceOrder = () => {
             className="form-control"
             required
           />
-          <br />
-
           <input
             type="text"
             placeholder="Enter the cake name"
@@ -73,8 +68,6 @@ const PlaceOrder = () => {
             className="form-control"
             required
           />
-          <br />
-
           <input
             type="number"
             placeholder="Enter quantity"
@@ -83,8 +76,6 @@ const PlaceOrder = () => {
             className="form-control"
             required
           />
-          <br />
-
           <input
             type="number"
             placeholder="Enter total price"
@@ -93,12 +84,10 @@ const PlaceOrder = () => {
             className="form-control"
             required
           />
-          <br />
 
-          <button type="submit" className="btn btn-danger">Place Order</button>
+          <button type="submit" className="submit-btn">Place Order</button>
         </form>
       </div>
-      <Footer/>
     </div>
   );
 };

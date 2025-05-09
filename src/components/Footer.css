@@ -1,0 +1,78 @@
+/* Footer */
+.footer-background-color {
+  background-color: #d2b48c; /* Tan (Matches app.css footer background color) */
+  color: #333; /* Dark text */
+}
+
+.footer-background-color h5,
+.footer-background-color h4 {
+  color: #8B4513; /* Chocolate Brown (Matches app.css theme) */
+}
+
+.social-icon {
+  margin: 0 10px;
+  color: #8B4513; /* Chocolate Brown */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #d2691e; /* Dark Orange (Matches app.css) */
+  transform: scale(1.1); /* Slight scaling on hover */
+}
+
+.bottom-footer {
+  background-color: #8B4513; /* Chocolate Brown */
+  color: white;
+  padding: 10px;
+}
+
+.text-info {
+  color: #fff !important; /* Ensure info color is white for contrast */
+}
+
+.text-light {
+  color: #f1f1f1; /* Lighter text color */
+}
+
+.text-dark {
+  color: #333 !important; /* Dark text */
+}
+
+/* Forms */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #d2691e; /* Dark Orange for focus */
+}
+
+.btn-primary {
+  background-color: #d2691e; /* Dark Orange for submit button */
+  border-color: #d2691e;
+  border-radius: 6px;
+}
+
+.btn-primary:hover {
+  background-color: #a0522d; /* Darker Brown on hover */
+  border-color: #a0522d;
+}
+
+/* Social Icon Styles */
+.social-icon {
+  margin: 0 10px;
+  color: #8B4513; /* Chocolate Brown */
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 2rem; /* Ensure the icons are large enough */
+}
+
+.social-icon:hover {
+  color: #d2691e; /* Dark Orange on hover */
+  transform: scale(1.1); /* Slight scaling on hover */
+}
+
